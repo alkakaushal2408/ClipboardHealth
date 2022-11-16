@@ -1,4 +1,4 @@
-package pages;
+package main.java.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +10,8 @@ import test.java.config.logger.Logger;
 import test.java.config.webdriver.WebDriverManager;
 
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
 
 public class PageObject {
 
@@ -35,23 +37,6 @@ public class PageObject {
 
     public boolean isElementPresent(By by) {
         return !driver.findElements(by).isEmpty();
-    }
-
-    /**
-     * Checks if WebElement is present, visible and clickable via the given By
-     * locator
-     *
-     * @param by Locator to check for elements
-     */
-    public boolean isElementClickable(By by) {
-        var clickable = false;
-        if (isElementPresent(by)) {
-            WebElement e = driver.findElement(by);
-            if (e.isDisplayed() && e.isEnabled()) {
-                clickable = true;
-            }
-        }
-        return clickable;
     }
 
     /**
@@ -91,7 +76,7 @@ public class PageObject {
     }
     /**
      * Loads a page using the given URL. Can be relative to the domain under test
-     * defined in the {@link main.java.Config #TEST_URL} variable, or a full URL.
+     * defined in the {@link test.java.Config #TEST_URL} variable, or a full URL.
      *
      * Only use this method if the PageObject being returned matches the Page Object
      * it was called from. Otherwise, use {@link # loadPageFullURL(String, Class)} so
@@ -130,5 +115,36 @@ public class PageObject {
         return this;
     }
 
+    /**
+     * Switches to the first popup/new tab found and gives it focus for driver
+     * actions
+     */
+    public void switchToPopUp() {
+        WebDriverManager.setMainWindowHandle(driver.getWindowHandle());
 
-}
+        Set<String> s = driver.getWindowHandles();
+
+        Iterator<String> ite = s.iterator();
+
+        while (ite.hasNext()) {
+            String popupHandle = ite.next();
+            if (!popupHandle.contains(WebDriverManager.getMainWindowHandle())) {
+                Logger.info(String.format("Switching from window with title: '%s' and handle: '%s' ", driver.getTitle(),
+                        WebDriverManager.getMainWindowHandle()));
+                driver.switchTo().window(popupHandle);
+                wait(5).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("body")));
+                Logger.info(String.format("Switched to window with title: '%s', and handle '%s'", driver.getTitle(),
+                        popupHandle));
+                break;
+            }
+        }
+        if (driver.getWindowHandle().equals(WebDriverManager.getMainWindowHandle())) {
+            Logger.warn("Attempted to switch windows, but no new window was found.");
+        }
+    }
+
+    }
+
+
+
+

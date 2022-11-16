@@ -19,22 +19,9 @@ public class DateUtil {
 	public static String getCurrentUTCDateTimeStamp() {
 		// waits a random number of ms so that when this is used to generate a unique
 		// string, it will never return the same string twice
-		TestUtil.sleep(TestUtil.getRandomIntInRange(1, 50));
 		var instant = Instant.now().truncatedTo(ChronoUnit.NANOS);
 		OffsetDateTime odt = instant.atOffset(ZoneOffset.UTC);
 		return odt.format(DateTimeFormatter.ofPattern("uuuuMMdd'T'HHmmssSSS"));
-	}
-
-	/**
-	 * Gets the current date in the system's timezone, and returns it in the passed
-	 * in format
-	 * 
-	 * @param format Date format: eg. "MM/dd/yyyy"
-	 * @return The current date in the given format
-	 */
-	public static String getCurrentDate(String format) {
-		DateFormat dateFormat = new SimpleDateFormat(format);
-		return getCurrentDate(dateFormat);
 	}
 
 	/**
@@ -42,7 +29,7 @@ public class DateUtil {
 	 * format
 	 * 
 	 * @param tz     Timezone to get the date in
-	 * @param format Date format: eg. "MM/dd/yyyy"
+	 * @param dateFormatStr Date format: eg. "MM/dd/yyyy"
 	 * @return The current date in the given format
 	 */
 	public static String getCurrentDate(TimeZone tz, String dateFormatStr) {

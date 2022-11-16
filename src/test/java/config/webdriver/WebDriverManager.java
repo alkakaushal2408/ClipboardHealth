@@ -9,24 +9,32 @@ public class WebDriverManager {
      * threads so that different TestNG threads cannot use the same webdriver.
      */
 
-        private WebDriverManager() {
-            throw new IllegalStateException("Utility class");
-        }
-
-        private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-        private static ThreadLocal<String> mwh = new ThreadLocal<>();
-
-        public static WebDriver getDriver() {
-            return webDriver.get();
-        }
-
-        public static void setWebDriver(WebDriver driver) {
-            webDriver.set(driver);
-        }
-
-        public static void unload() {
-            mwh.remove();
-            webDriver.remove();
-        }
+    private WebDriverManager() {
+        throw new IllegalStateException("Utility class");
     }
+
+    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    private static ThreadLocal<String> mwh = new ThreadLocal<>();
+
+    public static WebDriver getDriver() {
+        return webDriver.get();
+    }
+
+    public static void setWebDriver(WebDriver driver) {
+        webDriver.set(driver);
+    }
+
+    public static void unload() {
+        mwh.remove();
+        webDriver.remove();
+    }
+
+    public static String getMainWindowHandle() {
+        return mwh.get();
+    }
+
+    public static void setMainWindowHandle(String mainWindowHandle) {
+        mwh.set(mainWindowHandle);
+    }
+}
 

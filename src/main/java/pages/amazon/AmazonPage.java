@@ -1,11 +1,11 @@
 package main.java.pages.amazon;
 
+import main.java.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.PageObject;
 import test.java.Config;
 import test.java.config.logger.Logger;
 
