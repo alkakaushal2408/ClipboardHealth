@@ -20,12 +20,6 @@ public class ExtentManager {
 	private static String path = Paths.get(System.getProperty("user.dir"), "test-output", "extent").toString();
 	private static String reportFileLoc = Paths.get(path, reportFileName).toString();
 
-	public static ExtentReports getInstance(String suiteName) {
-		if (extent == null)
-			extent = createInstance(suiteName);
-		return extent;
-	}
-
 	public static ExtentReports getInstance() {
 		if (extent == null)
 			extent = createInstance("");
@@ -37,7 +31,7 @@ public class ExtentManager {
 		String fileName = getReportFileLocation();
 		var htmlReporter = new ExtentSparkReporter(fileName);
 		htmlReporter.config().setTheme(Theme.STANDARD);
-		htmlReporter.config().setDocumentTitle("Kestra TAF UI Automation Report");
+		htmlReporter.config().setDocumentTitle("Amazon UI Automation Report");
 		htmlReporter.config().setEncoding("utf-8");
 		if (StringUtils.isNotBlank(suiteName)) {
 			htmlReporter.config().setReportName(suiteName);

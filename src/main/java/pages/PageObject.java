@@ -40,17 +40,6 @@ public class PageObject {
     }
 
     /**
-     * Checks if given text is present in a given element
-     *
-     * @param e    WebElement to check
-     * @param text Text to check for
-     */
-    public boolean isTextPresentInElement(WebElement e, String text) {
-        text = text.replace("'", "\'");
-        return e.getText().contains(text);
-    }
-
-    /**
      * Clicks on the given element
      *
      * @param by Locator for the element to click
@@ -91,27 +80,6 @@ public class PageObject {
         }
         Logger.info("Loading URL: " + url);
         driver.get(url);
-        return this;
-    }
-
-    /**
-     * Selects the given checkbox element if not already selected
-     *
-     * @param by Locator for the checkbox
-     */
-    public PageObject selectCheckbox(By by) {
-        return selectCheckbox(driver.findElement(by));
-    }
-
-    /**
-     * Selects the given checkbox element if not already selected
-     *
-     * @param e Element to select
-     */
-    public PageObject selectCheckbox(WebElement e) {
-        if (!e.isSelected()) {
-            click(e);
-        }
         return this;
     }
 

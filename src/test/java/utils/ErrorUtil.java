@@ -1,6 +1,5 @@
 package test.java.utils;
 
-import com.aventstack.extentreports.ExtentTest;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import test.java.config.logger.Logger;

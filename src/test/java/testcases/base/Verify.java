@@ -1,8 +1,8 @@
 package test.java.testcases.base;
 
+import main.java.pages.PageObject;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import pages.PageObject;
 import test.java.config.logger.Logger;
 import test.java.utils.DateUtil;
 import test.java.utils.ErrorUtil;

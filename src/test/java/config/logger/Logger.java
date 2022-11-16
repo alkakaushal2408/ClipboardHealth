@@ -13,12 +13,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-/**
- * Logger class
- * 
- * @author anam_alam
- *
- */
 public class Logger {
 
 	private Logger() {

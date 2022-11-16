@@ -7,13 +7,6 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-/**
- * Enricher Factory
- * 
- * @author anam_alam
- *
- */
-
 public class LoggerEnricher {
 
 	protected static String tzUTC = "UTC";
@@ -27,10 +20,6 @@ public class LoggerEnricher {
 		BOLD(BOLD_STRING), ITALIC(ITALIC_STRING), CUSTOM("custom"), DEFAULT("default");
 
 		private String enrichType;
-
-		public String getEnrichType() {
-			return this.enrichType;
-		}
 
 		EnricherFactory(String enrichType) {
 			this.enrichType = enrichType;

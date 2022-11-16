@@ -72,6 +72,7 @@ public class AmazonPage extends PageObject {
 
     public AmazonPage performSortByHighToLowPrice() {
         click(sortByHighToLowPricingDropdownValueLocator);
+        wait(30).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@data-component-type='s-search-results']")));
         return this;
     }
 
